@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Collection Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Font similar to the athletic, sleek font used on sports stores */
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+        }
+        
+        h1, h2, h3, .heading-font {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Hover effect for product images */
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="text-gray-900">
+
+    <section class="relative w-full h-[80vh] bg-black flex items-center justify-center text-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1556906781-9a412961c28c?auto=format&fit=crop&q=80&w=2000" alt="Collection Background" class="w-full h-full object-cover opacity-60">
+        </div>
+        
+        <div class="relative z-10 px-4 max-w-4xl mx-auto flex flex-col items-center">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 tracking-wide">
+                URBAN STREETWEAR 2025
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl">
+                Vision, movement and design come together in a collection that celebrates personality and performance. Discover the exclusive new drop.
+            </p>
+            <a href="#collection-grid" class="bg-white text-black heading-font font-bold text-lg px-8 py-3 rounded hover:bg-gray-200 transition duration-300">
+                EXPLORE THE COLLECTION
+            </a>
+        </div>
+    </section>
+
+    <section id="collection-grid" class="max-w-7xl mx-auto px-4 py-16">
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+
+            <div class="product-card group cursor-pointer flex flex-col bg-white p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="relative overflow-hidden mb-4 bg-gray-100 aspect-[4/5] flex items-center justify-center">
+                    <span class="absolute top-2 left-2 bg-black text-white text-xs font-bold px-2 py-1 uppercase tracking-wider z-10">
+                        Customizable
+                    </span>
+                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&q=80&w=600" alt="Product 1" class="product-image w-full h-full object-cover">
+                </div>
+                
+                <h3 class="text-sm md:text-base font-bold leading-tight mb-1 text-gray-900">
+                    SIGNATURE AUTHENTIC LONG SLEEVE TEE
+                </h3>
+                <p class="text-sm text-gray-600 mb-3">$ 139.00</p>
+                
+                <div class="flex gap-2 mt-auto">
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">S</div>
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">M</div>
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">L</div>
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">XL</div>
+                </div>
+            </div>
+
+            <div class="product-card group cursor-pointer flex flex-col bg-white p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="relative overflow-hidden mb-4 bg-gray-100 aspect-[4/5] flex items-center justify-center">
+                    <span class="absolute top-2 left-2 bg-gray-500 text-white text-xs font-bold px-2 py-1 uppercase tracking-wider z-10">
+                        Pre-order
+                    </span>
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&q=80&w=600" alt="Product 2" class="product-image w-full h-full object-cover">
+                </div>
+                
+                <h3 class="text-sm md:text-base font-bold leading-tight mb-1 text-gray-900">
+                    URBAN PACK CARGO JACKET
+                </h3>
+                <p class="text-sm text-gray-600 mb-3">$ 180.00</p>
+                
+                <div class="flex gap-2 mt-auto">
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">S</div>
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">M</div>
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition bg-gray-100 line-through opacity-50">L</div>
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">XL</div>
+                </div>
+            </div>
+
+            <div class="product-card group cursor-pointer flex flex-col bg-white p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="relative overflow-hidden mb-4 bg-gray-100 aspect-[4/5] flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1594132474442-f850d53cd706?auto=format&fit=crop&q=80&w=600" alt="Product 3" class="product-image w-full h-full object-cover">
+                </div>
+                
+                <h3 class="text-sm md:text-base font-bold leading-tight mb-1 text-gray-900">
+                    SIGNATURE PACK PERFORMANCE SHORTS
+                </h3>
+                <p class="text-sm text-gray-600 mb-3">$ 48.00</p>
+                
+                <div class="flex gap-2 mt-auto">
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">S</div>
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">M</div>
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">L</div>
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">XL</div>
+                </div>
+            </div>
+
+            <div class="product-card group cursor-pointer flex flex-col bg-white p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="relative overflow-hidden mb-4 bg-gray-100 aspect-[4/5] flex items-center justify-center">
+                    <span class="absolute top-2 left-2 bg-black text-white text-xs font-bold px-2 py-1 uppercase tracking-wider z-10">
+                        New
+                    </span>
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&q=80&w=600" alt="Product 4" class="product-image w-full h-full object-cover">
+                </div>
+                
+                <h3 class="text-sm md:text-base font-bold leading-tight mb-1 text-gray-900">
+                    SIGNATURE PACK HOODIE TOP
+                </h3>
+                <p class="text-sm text-gray-600 mb-3">$ 87.00</p>
+                
+                <div class="flex gap-2 mt-auto">
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">S</div>
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">M</div>
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition">L</div>
+                    <div class="w-8 h-8 flex items-center justify-center border border-gray-300 text-xs text-gray-500 hover:border-black hover:text-black transition bg-gray-100 line-through opacity-50">XL</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>
