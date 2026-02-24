@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collection Launch — The Open</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #002B3A;
+    --color-secondary: #ffffff;
+    --color-accent: #1A6B54;
+    --color-accent-hover: #14553F;
+    --color-muted: #6B7B83;
+    --color-light-bg: #F7F6F3;
+    --color-warm-bg: #F2EDE6;
+    --color-overlay: rgba(0,43,58,0.45);
+    --color-overlay-deep: rgba(0,43,58,0.7);
+    --color-gold: #B8965A;
+    --color-gold-light: #D4B87A;
+    --font-heading: 'Playfair Display', 'Georgia', serif;
+    --font-body: 'Source Sans 3', 'Helvetica Neue', sans-serif;
+    --section-gap: 0px;
+    --content-max: 1440px;
+    --transition-speed: 0.35s;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-primary);
+    background: var(--color-secondary);
+    overflow-x: hidden;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  a { text-decoration: none; color: inherit; }
+  img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+  .section-gap { margin-bottom: var(--section-gap); }
+
+  /* ============================================
+     HERO
+     ============================================ */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 92vh;
+    min-height: 600px;
+    max-height: 960px;
+    overflow: hidden;
+    background: var(--color-primary);
+  }
+  .hero__media { position: absolute; inset: 0; z-index: 1; }
+  .hero__media img {
+    animation: gentleDrift 30s ease-in-out infinite alternate;
+  }
+  @keyframes gentleDrift {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.05) translate(-0.5%, -0.5%); }
+  }
+  .hero__overlay {
+    position: absolute; inset: 0; z-index: 2;
+    background: linear-gradient(
+      170deg,
+      rgba(0,43,58,0.15) 0%,
+      rgba(0,43,58,0.3) 40%,
+      rgba(0,43,58,0.75) 100%
+    );
+  }
+  .hero__content {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 3;
+    padding: 100px 64px;
+    max-width: var(--content-max);
+    margin: 0 auto;
+  }
+  .hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    max-width: 700px;
+  }
+  .hero__subtitle {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    max-width: 480px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+    letter-spacing: 0.2px;
+  }
+  .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  /* ============================================
+     BUTTONS
+     ============================================ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border-radius: 0;
+    transition: all var(--transition-speed) ease;
+    white-space: nowrap;
+  }
+  .btn--primary {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    border: 1px solid var(--color-secondary);
+  }
+  .btn--primary:hover {
+    background: var(--color-gold);
+    color: #fff;
+    border-color: var(--color-gold);
+  }
+  .btn--outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.45);
+  }
+  .btn--outline:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* ============================================
+     SPLIT FEATURE
+     ============================================ */
+  .split-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 580px;
+  }
+  .split-feature--reverse .split-feature__media { order: 2; }
+  .split-feature--reverse .split-feature__content { order: 1; }
+  .split-feature__media {
+    position: relative;
+    overflow: hidden;
+    min-height: 480px;
+  }
+  .split-feature__media img { transition: transform 1.2s ease; }
+  .split-feature:hover .split-feature__media img { transform: scale(1.025); }
+  .split-feature__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 72px;
+    background: var(--color-primary);
+    color: var(--color-secondary);
+  }
+  .split-feature__title {
+    font-family: var(--font-heading);
+    font-size: clamp(30px, 3.5vw, 48px);
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .split-feature__desc {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 36px;
+    max-width: 420px;
+    line-height: 1.7;
+    letter-spacing: 0.2px;
+  }
+  .split-feature__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .split-feature--light .split-feature__content {
+    background: var(--color-warm-bg);
+    color: var(--color-primary);
+  }
+  .split-feature--light .split-feature__desc { color: var(--color-muted); }
+
+  /* ============================================
+     3-UP VIDEO FEATURE CARDS
+     ============================================ */
+  .video-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+  .video-feature-card {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--color-primary);
+  }
+  .video-feature-card__media { position: absolute; inset: 0; }
+  .video-feature-card__media video,
+  .video-feature-card__media img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 1s ease;
+  }
+  .video-feature-card:hover .video-feature-card__media video,
+  .video-feature-card:hover .video-feature-card__media img { transform: scale(1.035); }
+  .video-feature-card__overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(
+      to top,
+      rgba(0,43,58,0.85) 0%,
+      rgba(0,43,58,0.2) 40%,
+      rgba(0,43,58,0.05) 100%
+    );
+  }
+  .video-feature-card__content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    z-index: 2; padding: 48px 32px;
+  }
+  .video-feature-card__title {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 2vw, 26px);
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .video-feature-card__desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.65;
+    max-width: 300px;
+    letter-spacing: 0.2px;
+  }
+  .video-feature-card__play {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(1); z-index: 3;
+    width: 68px; height: 68px; border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.4s ease; opacity: 0;
+  }
+  .video-feature-card:hover .video-feature-card__play {
+    opacity: 1; transform: translate(-50%, -50%) scale(1.05);
+  }
+  .video-feature-card__play svg { width: 20px; height: 20px; fill: #fff; margin-left: 3px; }
+
+  /* ============================================
+     CATEGORY CARDS 2-UP
+     ============================================ */
+  .category-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+  .category-card {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--color-primary);
+  }
+  .category-card img { transition: transform 1s ease; }
+  .category-card:hover img { transform: scale(1.03); }
+  .category-card__overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to top, rgba(0,43,58,0.7) 0%, rgba(0,43,58,0.1) 50%, rgba(0,43,58,0.02) 100%);
+  }
+  .category-card__content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    z-index: 2; padding: 48px 40px;
+  }
+  .category-card__title {
+    font-family: var(--font-heading);
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 500; color: #fff; margin-bottom: 10px;
+  }
+  .category-card__desc {
+    font-size: 15px; font-weight: 300;
+    color: rgba(255,255,255,0.8); margin-bottom: 24px; letter-spacing: 0.2px;
+  }
+  .category-card__link {
+    font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    color: #fff; text-transform: uppercase; letter-spacing: 2px;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px; border: 1px solid rgba(255,255,255,0.4);
+    transition: all var(--transition-speed) ease;
+  }
+  .category-card__link:hover {
+    background: #fff; color: var(--color-primary); border-color: #fff;
+  }
+
+  /* ============================================
+     PRODUCT GRID CAROUSEL
+     ============================================ */
+  .product-grid {
+    padding: 96px 0;
+    background: var(--color-light-bg);
+  }
+  .product-grid__header {
+    max-width: var(--content-max); margin: 0 auto;
+    padding: 0 64px 48px;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .product-grid__title {
+    font-family: var(--font-heading); font-size: 32px; font-weight: 500;
+  }
+  .product-grid__view-all {
+    font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--color-accent);
+    transition: color var(--transition-speed);
+    border-bottom: 1px solid transparent; padding-bottom: 2px;
+  }
+  .product-grid__view-all:hover {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
+  .product-grid__track {
+    display: flex; gap: 20px; padding: 0 64px;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; -ms-overflow-style: none;
+    scroll-behavior: smooth;
+  }
+  .product-grid__track::-webkit-scrollbar { display: none; }
+  .product-card {
+    flex: 0 0 272px; scroll-snap-align: start;
+    cursor: pointer; transition: transform var(--transition-speed) ease;
+  }
+  .product-card:hover { transform: translateY(-3px); }
+  .product-card__image {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #fff;
+    margin-bottom: 16px;
+  }
+  .product-card__image img { transition: transform 0.6s ease; }
+  .product-card:hover .product-card__image img { transform: scale(1.05); }
+  .product-card__name {
+    font-family: var(--font-body); font-weight: 500; font-size: 14px;
+    margin-bottom: 4px;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
+    line-height: 1.4; color: var(--color-primary);
+  }
+  .product-card__category {
+    font-size: 12px; font-weight: 400;
+    color: var(--color-muted); margin-bottom: 6px; letter-spacing: 0.3px;
+  }
+  .product-card__price {
+    font-weight: 600; font-size: 14px; color: var(--color-primary);
+  }
+  .product-card__price--sale { color: #9B2C2C; }
+  .product-card__price--was {
+    text-decoration: line-through; color: var(--color-muted);
+    font-weight: 400; margin-left: 8px;
+  }
+  .product-card__badge {
+    display: inline-block; font-family: var(--font-body);
+    font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; color: #fff;
+    background: #9B2C2C; padding: 4px 12px; margin-top: 8px;
+  }
+
+  /* ============================================
+     SOCIAL LINKS
+     ============================================ */
+  .social-links {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: rgba(255,255,255,0.1);
+  }
+  .social-card {
+    position: relative; aspect-ratio: 16/9;
+    overflow: hidden; cursor: pointer; background: var(--color-primary);
+  }
+  .social-card img { transition: transform 0.8s ease; }
+  .social-card:hover img { transform: scale(1.03); }
+  .social-card__overlay {
+    position: absolute; inset: 0; background: var(--color-overlay-deep); z-index: 1;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 40px;
+    transition: background var(--transition-speed) ease;
+  }
+  .social-card:hover .social-card__overlay { background: rgba(0,43,58,0.8); }
+  .social-card__title {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 2.5vw, 30px); font-weight: 500;
+    color: #fff; margin-bottom: 20px; line-height: 1.2; font-style: italic;
+  }
+  .social-card__cta {
+    font-family: var(--font-body); font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 2px; color: #fff;
+    padding: 12px 28px; border: 1px solid rgba(255,255,255,0.4);
+    transition: all var(--transition-speed) ease;
+  }
+  .social-card:hover .social-card__cta {
+    background: #fff; color: var(--color-primary); border-color: #fff;
+  }
+
+  /* ============================================
+     ANIMATIONS
+     ============================================ */
+  .animate-in {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .animate-in.visible { opacity: 1; transform: translateY(0); }
+  .animate-in-delay-1 { transition-delay: 0.15s; }
+  .animate-in-delay-2 { transition-delay: 0.3s; }
+  .animate-in-delay-3 { transition-delay: 0.45s; }
+
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (max-width: 1024px) {
+    .hero__content { padding: 72px 40px; }
+    .split-feature { grid-template-columns: 1fr; }
+    .split-feature__media { min-height: 400px; }
+    .split-feature__content { padding: 64px 40px; }
+    .split-feature--reverse .split-feature__media { order: 1; }
+    .split-feature--reverse .split-feature__content { order: 2; }
+    .video-features { grid-template-columns: 1fr; }
+    .video-feature-card { aspect-ratio: 16/9; }
+    .product-grid__header { padding: 0 40px 40px; }
+    .product-grid__track { padding: 0 40px; }
+  }
+  @media (max-width: 768px) {
+    /* Hero becomes 3:4 portrait on mobile */
+    .hero {
+      height: auto;
+      min-height: unset;
+      max-height: unset;
+      aspect-ratio: 3/4;
+    }
+    .hero__content { padding: 48px 24px; }
+    .hero__title { font-size: clamp(36px, 10vw, 52px); }
+    .category-cards { grid-template-columns: 1fr; }
+    .social-links { grid-template-columns: 1fr; }
+    .video-feature-card__content { padding: 32px 24px; }
+    .product-card { flex: 0 0 200px; }
+    .product-grid { padding: 64px 0; }
+    .product-grid__header { padding: 0 24px 32px; }
+    .product-grid__track { padding: 0 24px; gap: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero section-gap">
+  <div class="hero__media">
+    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80"
+         alt="Collection hero" loading="eager">
+  </div>
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <h1 class="hero__title animate-in">Enter<br>The Wild</h1>
+    <p class="hero__subtitle animate-in animate-in-delay-1">Explore wild routes. Chase wild goats. Gear built for every condition the mountain throws at you.</p>
+    <div class="hero__actions animate-in animate-in-delay-2">
+      <a href="#" class="btn btn--primary">Shop Collection</a>
+      <a href="#" class="btn btn--outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- SPLIT FEATURE — HERO PRODUCT -->
+<section class="split-feature section-gap">
+  <div class="split-feature__media">
+    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=960&q=80" alt="Featured product" loading="lazy">
+  </div>
+  <div class="split-feature__content">
+    <h2 class="split-feature__title animate-in">ACG<br>Ultrafly</h2>
+    <p class="split-feature__desc animate-in animate-in-delay-1">Rock, stone, gravel, sand — a lot faster than you planned. Race-day trail shoe built for warp speed.</p>
+    <div class="split-feature__actions animate-in animate-in-delay-2">
+      <a href="#" class="btn btn--primary">Shop</a>
+      <a href="#" class="btn btn--outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- 3-UP VIDEO FEATURE CARDS -->
+<section class="video-features section-gap">
+  <div class="video-feature-card">
+    <div class="video-feature-card__media">
+      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80">
+        <source src="" type="video/mp4">
+        <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&q=80" alt="Wildly Responsive">
+      </video>
+    </div>
+    <div class="video-feature-card__overlay"></div>
+    <div class="video-feature-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+    <div class="video-feature-card__content">
+      <h3 class="video-feature-card__title">Wildly Responsive</h3>
+      <p class="video-feature-card__desc">You can call it dark mountain magic. We call it ZoomX and a split carbon-fibre Flyplate.</p>
+    </div>
+  </div>
+  <div class="video-feature-card">
+    <div class="video-feature-card__media">
+      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1486915309615-1d46deacc870?w=800&q=80">
+        <source src="" type="video/mp4">
+        <img src="https://images.unsplash.com/photo-1486915309615-1d46deacc870?w=800&q=80" alt="Wildly Grippy">
+      </video>
+    </div>
+    <div class="video-feature-card__overlay"></div>
+    <div class="video-feature-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+    <div class="video-feature-card__content">
+      <h3 class="video-feature-card__title">Wildly Grippy</h3>
+      <p class="video-feature-card__desc">Full-coverage Vibram® outsole gets aggressive over grit and gravel.</p>
+    </div>
+  </div>
+  <div class="video-feature-card">
+    <div class="video-feature-card__media">
+      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800&q=80">
+        <source src="" type="video/mp4">
+        <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800&q=80" alt="Wildly Fast">
+      </video>
+    </div>
+    <div class="video-feature-card__overlay"></div>
+    <div class="video-feature-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+    <div class="video-feature-card__content">
+      <h3 class="video-feature-card__title">Wildly Fast</h3>
+      <p class="video-feature-card__desc">A race-day trail shoe built to move at warp speed without the baggage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SPLIT FEATURE — REVERSED -->
+<section class="split-feature split-feature--reverse section-gap">
+  <div class="split-feature__media">
+    <img src="https://images.unsplash.com/photo-1445452916036-9022dfd33aa8?w=960&q=80" alt="Lava Loft Jacket" loading="lazy">
+  </div>
+  <div class="split-feature__content">
+    <h2 class="split-feature__title animate-in">ACG Lava<br>Loft Jacket</h2>
+    <p class="split-feature__desc animate-in animate-in-delay-1">Puts temperature control in a death-grip hold. Down without the bulk shields against whatever icy demons chase you to the top.</p>
+    <div class="split-feature__actions animate-in animate-in-delay-2">
+      <a href="#" class="btn btn--primary">Shop</a>
+      <a href="#" class="btn btn--outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- 3-UP VIDEO FEATURE CARDS (Jacket) -->
+<section class="video-features section-gap">
+  <div class="video-feature-card">
+    <div class="video-feature-card__media">
+      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1501908734255-16579c18c25f?w=800&q=80">
+        <source src="" type="video/mp4">
+        <img src="https://images.unsplash.com/photo-1501908734255-16579c18c25f?w=800&q=80" alt="Wildly Warm">
+      </video>
+    </div>
+    <div class="video-feature-card__overlay"></div>
+    <div class="video-feature-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+    <div class="video-feature-card__content">
+      <h3 class="video-feature-card__title">Wildly Warm</h3>
+      <p class="video-feature-card__desc">Down without the bulk shields against whatever icy demons chase you to the top.</p>
+    </div>
+  </div>
+  <div class="video-feature-card">
+    <div class="video-feature-card__media">
+      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80">
+        <source src="" type="video/mp4">
+        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80" alt="Wildly Breathable">
+      </video>
+    </div>
+    <div class="video-feature-card__overlay"></div>
+    <div class="video-feature-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+    <div class="video-feature-card__content">
+      <h3 class="video-feature-card__title">Wildly Breathable</h3>
+      <p class="video-feature-card__desc">Vents mapped to the body's heat zones help keep your temp in check.</p>
+    </div>
+  </div>
+  <div class="video-feature-card">
+    <div class="video-feature-card__media">
+      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80">
+        <source src="" type="video/mp4">
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80" alt="Wildly Packable">
+      </video>
+    </div>
+    <div class="video-feature-card__overlay"></div>
+    <div class="video-feature-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+    <div class="video-feature-card__content">
+      <h3 class="video-feature-card__title">Wildly Packable</h3>
+      <p class="video-feature-card__desc">Packs into its pocket until bluebird skies turn sideways.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY CARDS — 2-UP -->
+<section class="category-cards section-gap">
+  <a href="#" class="category-card">
+    <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=960&q=80" alt="ACG Hike" loading="lazy">
+    <div class="category-card__overlay"></div>
+    <div class="category-card__content animate-in">
+      <h3 class="category-card__title">ACG Hike</h3>
+      <p class="category-card__desc">For big days on foot.</p>
+      <span class="category-card__link">Shop ACG Hike &rarr;</span>
+    </div>
+  </a>
+  <a href="#" class="category-card">
+    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=960&q=80" alt="ACG Explore" loading="lazy">
+    <div class="category-card__overlay"></div>
+    <div class="category-card__content animate-in">
+      <h3 class="category-card__title">ACG Explore</h3>
+      <p class="category-card__desc">Gear up, get lost.</p>
+      <span class="category-card__link">Shop ACG Explore &rarr;</span>
+    </div>
+  </a>
+</section>
+
+<!-- PRODUCT GRID — R&A Shop -->
+<section class="product-grid section-gap">
+  <div class="product-grid__header">
+    <h2 class="product-grid__title">Shop the Collection</h2>
+    <a href="https://shop.randa.org/en/" class="product-grid__view-all" target="_blank">View All &rarr;</a>
+  </div>
+  <div class="product-grid__track">
+
+    <a href="https://shop.randa.org/en/the-open-iconic-stripe-polo-grey/p-249914133906571485+z-8-4146785894" class="product-card" target="_blank">
+      <div class="product-card__image">
+        <img src="//images.footballfanatics.com/the-open/the-open-iconic-stripe-polo-grey_ss5_p-203266237+pv-1+u-4c5h7kho6wpk7kplwasr+v-antxnl6qoujimcwyq6qb.jpg?_hv=2&w=532" alt="The Open Iconic Stripe Polo - Grey" loading="lazy">
+      </div>
+      <p class="product-card__name">The Open Iconic Stripe Polo – Grey</p>
+      <p class="product-card__category">The Open Collection</p>
+      <p class="product-card__price">£60.00</p>
+    </a>
+
+    <a href="https://shop.randa.org/en/the-open-iconic-stripe-polo-grey/p-249914133906571485+z-8-4146785894" class="product-card" target="_blank">
+      <div class="product-card__image">
+        <img src="//images.footballfanatics.com/the-open/the-open-iconic-stripe-polo-grey_ss5_p-203266237+pv-2+u-4c5h7kho6wpk7kplwasr+v-8qwmf9xoz6pkgsbjmtu6.jpg?_hv=2&w=532" alt="The Open Iconic Stripe Polo - Grey back" loading="lazy">
+      </div>
+      <p class="product-card__name">The Open Iconic Stripe Polo – Grey</p>
+      <p class="product-card__category">The Open Collection</p>
+      <p class="product-card__price">£60.00</p>
+    </a>
+
+    <a href="https://shop.randa.org/en/the-open-polo-black/p-358878011133243757+z-92-3780780133" class="product-card" target="_blank">
+      <div class="product-card__image">
+        <img src="//images.footballfanatics.com/the-open/the-open-iconic-stripe-polo-grey_ss5_p-203266237+pv-3+u-4c5h7kho6wpk7kplwasr+v-ajgekenu0nylrp4sichw.jpg?_hv=2&w=532" alt="The Open Polo - Black" loading="lazy">
+      </div>
+      <p class="product-card__name">The Open Polo – Black</p>
+      <p class="product-card__category">The Open Collection</p>
+      <p class="product-card__price">£55.00</p>
+    </a>
+
+    <a href="https://shop.randa.org/en/the-open-tartan-polo/p-131145341144804871+z-90-978019821" class="product-card" target="_blank">
+      <div class="product-card__image">
+        <img src="//images.footballfanatics.com/the-open/the-open-iconic-stripe-polo-grey_ss5_p-203266237+pv-4+u-4c5h7kho6wpk7kplwasr+v-aqka2fmkdwj2mncu75gb.jpg?_hv=2&w=532" alt="The Open Tartan Polo" loading="lazy">
+      </div>
+      <p class="product-card__name">The Open Tartan Polo</p>
+      <p class="product-card__category">The Open Collection</p>
+      <p class="product-card__price">£55.00</p>
+    </a>
+
+    <a href="https://shop.randa.org/en/the-open-boss-polo-white/p-241178900918991531+z-8-1792245266" class="product-card" target="_blank">
+      <div class="product-card__image">
+        <img src="//images.footballfanatics.com/the-open/the-open-iconic-stripe-polo-grey_ss5_p-203266237+pv-5+u-4c5h7kho6wpk7kplwasr+v-lvkzvzf5yks8rngsdscb.jpg?_hv=2&w=532" alt="The Open BOSS Polo - White" loading="lazy">
+      </div>
+      <p class="product-card__name">The Open BOSS Polo – White</p>
+      <p class="product-card__category">BOSS x The Open</p>
+      <p class="product-card__price">£95.00</p>
+    </a>
+
+    <a href="https://shop.randa.org/en/the-open-boss-polo-blue/p-246689019966448052+z-91-776357528" class="product-card" target="_blank">
+      <div class="product-card__image">
+        <img src="//images.footballfanatics.com/the-open/the-open-iconic-stripe-polo-grey_ss5_p-203266237+pv-1+u-4c5h7kho6wpk7kplwasr+v-antxnl6qoujimcwyq6qb.jpg?_hv=2&w=532" alt="The Open BOSS Polo - Blue" loading="lazy">
+      </div>
+      <p class="product-card__name">The Open BOSS Polo – Blue</p>
+      <p class="product-card__category">BOSS x The Open</p>
+      <p class="product-card__price">£95.00</p>
+    </a>
+
+    <a href="https://shop.randa.org/en/the-open-primary-logo-hoodie-navy/p-462267606862659161+z-94-2690957687" class="product-card" target="_blank">
+      <div class="product-card__image">
+        <img src="//images.footballfanatics.com/the-open/the-open-iconic-stripe-polo-grey_ss5_p-203266237+pv-3+u-4c5h7kho6wpk7kplwasr+v-ajgekenu0nylrp4sichw.jpg?_hv=2&w=532" alt="The Open Primary Logo Hoodie - Navy" loading="lazy">
+      </div>
+      <p class="product-card__name">The Open Primary Logo Hoodie – Navy</p>
+      <p class="product-card__category">The Open Collection</p>
+      <p class="product-card__price">£65.00</p>
+    </a>
+
+    <a href="https://shop.randa.org/en/the-open-boss-paul-curved-polo-shirt-blue/p-460045454711539783+z-8-2024074763" class="product-card" target="_blank">
+      <div class="product-card__image">
+        <img src="//images.footballfanatics.com/the-open/the-open-iconic-stripe-polo-grey_ss5_p-203266237+pv-4+u-4c5h7kho6wpk7kplwasr+v-aqka2fmkdwj2mncu75gb.jpg?_hv=2&w=532" alt="The Open BOSS Paul Curved Polo - Blue" loading="lazy">
+      </div>
+      <p class="product-card__name">The Open BOSS Paul Curved Polo – Blue</p>
+      <p class="product-card__category">BOSS x The Open</p>
+      <p class="product-card__price"><span class="product-card__price--sale">£80.00</span><span class="product-card__price--was">£114.00</span></p>
+      <span class="product-card__badge">Sale</span>
+    </a>
+
+    <a href="https://shop.randa.org/en/the-open-kjus-waterproof-gilet-navy/p-247734237765657153+z-97-4075503210" class="product-card" target="_blank">
+      <div class="product-card__image">
+        <img src="//images.footballfanatics.com/the-open/the-open-iconic-stripe-polo-grey_ss5_p-203266237+pv-5+u-4c5h7kho6wpk7kplwasr+v-lvkzvzf5yks8rngsdscb.jpg?_hv=2&w=532" alt="The Open KJUS Waterproof Gilet - Navy" loading="lazy">
+      </div>
+      <p class="product-card__name">The Open KJUS Waterproof Gilet – Navy</p>
+      <p class="product-card__category">KJUS x The Open</p>
+      <p class="product-card__price">£185.00</p>
+    </a>
+
+    <a href="https://shop.randa.org/en/the-open-hugo-boss-cap-white/p-358802470162799493+z-99-1046482610" class="product-card" target="_blank">
+      <div class="product-card__image">
+        <img src="//images.footballfanatics.com/the-open/the-open-iconic-stripe-polo-grey_ss5_p-203266237+pv-2+u-4c5h7kho6wpk7kplwasr+v-8qwmf9xoz6pkgsbjmtu6.jpg?_hv=2&w=532" alt="The Open BOSS Cap - White" loading="lazy">
+      </div>
+      <p class="product-card__name">The Open BOSS Cap – White</p>
+      <p class="product-card__category">BOSS x The Open</p>
+      <p class="product-card__price">£45.00</p>
+    </a>
+
+  </div>
+</section>
+
+<!-- SOCIAL / COMMUNITY -->
+<section class="social-links">
+  <a href="#" class="social-card">
+    <img src="https://images.unsplash.com/photo-1527856263669-12c3a0af2571?w=960&q=80" alt="Instagram" loading="lazy">
+    <div class="social-card__overlay">
+      <h3 class="social-card__title">Step into the world of ACG.</h3>
+      <span class="social-card__cta">ACG Instagram</span>
+    </div>
+  </a>
+  <a href="#" class="social-card">
+    <img src="https://images.unsplash.com/photo-1476611317561-60117649dd94?w=960&q=80" alt="Strava" loading="lazy">
+    <div class="social-card__overlay">
+      <h3 class="social-card__title">Come run with the wild ones.</h3>
+      <span class="social-card__cta">ACG Strava</span>
+    </div>
+  </a>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
